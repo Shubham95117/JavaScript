@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    console.log(20);
+    // function- if we do not pass and set default -default will take otherwise override
+    // function addNums(a=5,b=5){
+    //     console.log(a+b);
+    // }
+    // addNums();
+    // function addNums(a=5,b=5){
+    //     console.log(a+b);
+    // }
+    // addNums(5,25);
+    function addNums(a=5,b=5){
+       return (a+b);
+    }
+    console.log( addNums(5,25));
+// arrow
+let addNums2=(a,b)=>{
+    return a+b;
+}
+console.log(addNums2(50,100))
+
+
+
+
+</script>
+</html>
