@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+<body style="margin: 0">
+  <div id="header" style="padding: 1rem 0; background-color: lightblue; border-bottom: 1px solid orange;">
+    <h1 id="main-heading" style="margin: 0; color: white;">Fruit World</h1>
+  </div>
+  <div>
+    <h2 id="basket-heading">Fruits In Basket</h2>
+    <ul class="fruits">
+      <li class="fruit">Banana</li>
+      <li class="fruit">Apple</li>
+      <li class="fruit">Orange</li>
+      <li class="fruit">Kiwi</li>
+    </ul>
+  </div>
+  <div id="thanks"></div>
+
+  <script>
+    let main_heading = document.getElementById('main-heading');
+    main_heading.textContent = 'Fruit World';
+    main_heading.style.color = 'white';
+
+    let header_div = document.getElementById('header');
+    header_div.style.backgroundColor = 'green';
+    header_div.style.borderBottom = '3px solid orange';
+    let basket_heading=document.getElementById('basket-heading');
+    basket_heading.style.color='green';
+    let thanks=document.getElementById('thanks');
+    thanks.innerHTML='<p>Please visit us again.</p>';
+
+  </script>
+</body>
+</html>
