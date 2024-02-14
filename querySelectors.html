@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body style="margin: 0">
+  <div id="header" style="padding: 1rem 0; background-color: lightblue">
+    <h1 id="main-heading" style="margin: 0">Fruit Shop</h1>
+  </div>
+  <div>
+    <h2 id="basket-heading">Fruits In Basket</h2>
+    <ul class="fruits">
+      <li class="fruit">Banana</li>
+      <li class="fruit">Apple</li>
+      <li class="fruit">Orange</li>
+      <li class="fruit">Kiwi</li>
+    </ul>
+  </div>
+  <div id="thanks"></div>
+  <script>
+   let main_heading = document.querySelector('#main-heading');
+    main_heading.style.textAlign = 'center';
+
+    let fruits = document.querySelector('.fruits');
+
+    fruits.style.backgroundColor = 'gray';
+    fruits.style.padding = '30px';
+    fruits.style.margin = '30px';
+    fruits.style.width = '50%';
+    fruits.style.borderRadius = '5px';
+    fruits.style.listStyleType = 'none';
+
+    let basketHeading = document.querySelector('h2');
+    basketHeading.style.marginLeft = '30px';
+
+    let fruitItems = document.querySelectorAll('.fruit');
+
+    for (let i = 0; i < fruitItems.length; i++) {
+      // Use fruitItems[i] instead of fruitItems
+      fruitItems[i].style.backgroundColor = 'white';
+      fruitItems[i].style.padding = '10px';
+      fruitItems[i].style.margin = '10px';
+      fruitItems[i].style.borderRadius = '5px';
+    }
+
+    const oddFruitItems = document.querySelectorAll('.fruit:nth-child(odd)');
+    for (let i = 0; i < oddFruitItems.length; i++) {
+      oddFruitItems[i].style.backgroundColor = 'lightgray';
+    }
+//     2. Use id as query to select the basket heading and set its color to brown.
+
+// 3. Change the background color of even fruit items to red and change their text color to white.
+
+let newHeading = document.querySelector('#basket-heading');
+newHeading.style.color = 'brown';
+
+
+let evenFruits = document.querySelectorAll('.fruit:nth-child(even)');
+for (let i = 0; i < evenFruits.length; i++) {
+    evenFruits[i].style.backgroundColor = 'red';
+    evenFruits[i].style.color = 'white';
+}
+
+
+  </script>
+</body>
+
+</html>
