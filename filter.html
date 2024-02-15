@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body style="margin: 0">
+    <div id="header" style="padding: 1rem; background-color: lightblue">
+      <h1 id="main-heading" style="margin: 0">Fruit Shop</h1>
+      <input id="filter" type="text" placeholder="Search fruits..." />
+    </div>
+    <div>
+      <form>
+        <h2 id="basket-heading">Add Fruits</h2>
+        <input type="text" name="fruit" id="fruit-to-add" />
+        <button type="submit">Add</button>
+      </form>
+      <ul class="fruits">
+        <li class="fruit">Banana<button class="delete-btn">x</button></li>
+        <li class="fruit">Apple<button class="delete-btn">x</button></li>
+        <li class="fruit">Orange<button class="delete-btn">x</button></li>
+        <li class="fruit">Kiwi<button class="delete-btn">x</button></li>
+      </ul>
+    </div>
+    <div id="thanks"></div>
+  </body>
+  <script >
+  let form = document.querySelector('form');
+let lastChild = form.lastElementChild;
+
+let newInput = document.createElement('input');
+newInput.type = 'text';
+newInput.name = 'description';
+newInput.id = 'description';
+newInput.placeholder = 'Fruit Description';
+
+form.insertBefore(newInput, lastChild);
+
+// Use DOM Manipulation to show the fruit description (in italics) on screen along with the fruit name. This description should be shown on the next line.
+let fruitList = document.getElementsByClassName('fruits')[0];
+
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    
+    let fruitToAdd = document.getElementById('fruit-to-add').value;
+    let descriptionToAdd = document.getElementById('description').value;
+
+    let newLi = document.createElement('li');
+    newLi.className = 'fruit';
+
+    // Create a new paragraph for description and set it in italics
+    let descriptionPara = document.createElement('p');
+descriptionPara.textContent = `${fruitToAdd} ${descriptionToAdd}`;
+descriptionPara.style.fontStyle = 'italic';
+
+// Add the input values, "Delete" button, and "Edit" button to the li
+newLi.innerHTML += `
+    ${descriptionPara.outerHTML}
+    <button class="delete-btn">x</button>
+    <button class="edit-btn">Edit</button>
+`;
+
+    // Add the input values, "Delete" button, and "Edit" button to the li
+    newLi.innerHTML += `${fruitToAdd} 
+                        <button class="delete-btn">x</button>
+                        <button class="edit-btn">Edit</button>`;
+
+    // Adding li as the last element of ul
+    fruitList.appendChild(newLi);
+
+    // Clear input fields after adding a fruit
+    document.getElementById('fruit-to-add').value = '';
+    document.getElementById('description').value = '';
+});
+
+// Create a filter that shows only those fruits whose either name or description or both matches the entered text.
+let filter = document.getElementById('filter');
+filter.addEventListener('keyup', function (event) {
+    const textEntered = event.target.value.toLowerCase();
+    const fruitItems = document.getElementsByClassName('fruit');
+
+    for (let i = 0; i < fruitItems.length; i++) {
+        const currentFruitText = fruitItems[i].textContent.toLowerCase();
+
+        if (currentFruitText.indexOf(textEntered) === -1) {
+            fruitItems[i].style.display = 'none';
+        } else {
+            fruitItems[i].style.display = 'flex';
+        }
+    }
+});
+
+
+  </script>
+</html>
