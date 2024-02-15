@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="margin: 0">
+    <div id="header" style="padding: 1rem 0; background-color: lightblue">
+      <h1 id="main-heading" style="margin: 0">Fruit Shop</h1>
+    </div>
+    <div>
+      <h2 id="basket-heading">Fruits In Basket</h2>
+      <ul class="fruits">
+        <li class="fruit">Banana</li>
+        <li class="fruit">Apple</li>
+        <li class="fruit">Orange</li>
+        <li class="fruit">Kiwi</li>
+      </ul>
+      <p>Total fruits : 4</p>
+    </div>
+    <div id="thanks"></div>
+  </body>
+  <script >
+   let ul=document.querySelector('.fruits');
+   //parent
+//    ul.parentElement.style.backgroundColor='pink';
+//    ul.parentElement.parentElement.style.backgroundColor='pink';
+
+//children
+ul.children[1].style.backgroundColor='pink';
+ul.firstElementChild.style.backgroundColor='red';
+ul.lastElementChild.style.backgroundColor='yellow';
+
+//siblings
+ul.nextElementSibling.style.backgroundColor='blue';
+ul.previousElementSibling.style.backgroundColor='orange';
+
+  
+  </script>
+</html>
