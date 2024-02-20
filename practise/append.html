@@ -23,16 +23,20 @@
   </body>
   <script >
    // create
-   let p=document.createElement('p');
+   let p=document.createElement('h1');
    let paratext=document.createTextNode(' i m shubham');
    p.appendChild(paratext);
    console.log(p);
+
+
 //append 
 let divs=document.getElementsByTagName('div');
 let secondDiv=divs[1];
-// secondDiv.appendChild(p)
+secondDiv.appendChild(p)
+
+
 //first
-let heading=document.getElementById('basket-heading');
-secondDiv.insertBefore(p,heading)
+// let heading=document.getElementById('basket-heading');
+// secondDiv.insertBefore(p,heading)
   </script>
 </html>

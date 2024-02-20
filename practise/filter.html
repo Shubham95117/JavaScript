@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body style="margin: 0">
+    <div id="header" style="padding: 1rem; background-color: lightblue">
+      <h1 id="main-heading" style="margin: 0">Fruit Shop</h1>
+      <input id="filter" type="text" placeholder="Search fruits..." />
+    </div>
+    <div>
+      <form>
+        <h2 id="basket-heading">Add Fruits</h2>
+        <input type="text" name="fruit" id="fruit-to-add" placeholder="Fruit"/>
+        <input type="text" name="description" id="fruit-description" placeholder="Fruit Description" />
+        <button type="submit">Add</button>
+      </form>
+      <ul class="fruits">
+        <li class="fruit">Banana<button class="delete-btn">x</button></li>
+        <li class="fruit">Apple<button class="delete-btn">x</button></li>
+        <li class="fruit">Orange<button class="delete-btn">x</button></li>
+        <li class="fruit">Kiwi<button class="delete-btn">x</button></li>
+      </ul>
+    </div>
+    <div id="thanks"></div>
+    <script>
+      // Getting input
+      let filter = document.getElementById('filter');
+
+      // Keyup event
+      filter.addEventListener('keyup', function (event) {
+        // Get entered value and make it lowercase
+        const textEntered = event.target.value.toLowerCase();
+        // Getting li fruits to match with entered
+        let fruitItems = document.getElementsByClassName('fruit');
+        for (let i = 0; i < fruitItems.length; i++) {
+          let currentFruitText = fruitItems[i].firstChild.textContent.toLowerCase();
+          if (currentFruitText.indexOf(textEntered) === -1) {
+            fruitItems[i].style.display = 'none';
+          } else {
+            fruitItems[i].style.display = 'flex';
+          }
+        }
+      });
+
+      // DOM Manipulation to add another input for fruit description
+      let form = document.querySelector('form');
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        let fruitToAdd = document.getElementById('fruit-to-add').value;
+        let descToAdd = document.getElementById('fruit-description').value;
+
+        let newLi = document.createElement('li');
+        newLi.className = 'fruit';
+
+        // Create a new paragraph for description and set it in italics
+        // let descriptionPara = document.createElement('p');
+        // descriptionPara.textContent = `${descToAdd}`;
+        // descriptionPara.style.fontStyle = 'italic';
+
+        // Append to li
+        // newLi.innerHTML = `${fruitToAdd} ${descriptionPara.outerHTML} <button class="delete-btn">x</button>`;
+        newLi.innerHTML = `${fruitToAdd}  <p style="font-style: italic;">${descToAdd}</p> <button class="delete-btn">x</button>`;
+
+        let fruits = document.querySelector('.fruits');
+        fruits.appendChild(newLi);
+
+        // Clear input fields after adding a fruit
+        document.getElementById('fruit-to-add').value = '';
+        document.getElementById('fruit-description').value = '';
+      });
+    </script>
+  </body>
+</html>

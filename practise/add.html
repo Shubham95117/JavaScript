@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
   </head>
   <body style="margin: 0">
     <div id="header" style="padding: 1rem; background-color: lightblue">
@@ -27,31 +27,40 @@
     </div>
     <div id="thanks"></div>
     <script>
-      let form = document.querySelector('form');
-      let fruits = document.querySelector('.fruits');
-  
-      form.addEventListener('submit', function (event) {
-          event.preventDefault();
-          // get input
-          let fruitToAdd = document.getElementById('fruit-to-add');
-          // create li
-          let newLi = document.createElement('li');
-          newLi.className = 'fruit';
-  
-          // Add the input value, "Delete" button, and "Edit" button to the li
-          newLi.innerHTML = `${fruitToAdd.value}<button class="delete-btn">x</button><button class="edit-btn">Edit</button>`;
-  
-          // adding li as the last element of ul
-          fruits.appendChild(newLi);
-      });
+        let form=document.querySelector('form');
+        let fruits=document.querySelector('.fruits');
+        
 
-// delete
+        form.addEventListener('submit',function(event){
+            event.preventDefault();
+
+            // get from input to add 
+            let fruitToAdd=document.getElementById('fruit-to-add');
+            // console.log(fruitToAdd.value)
+
+            //create li to add 
+            let newLi=document.createElement('li');
+            // console.log(newLi)
+
+            // add input value ,edit, delete button to li
+            newLi.innerHTML=`${fruitToAdd.value} <button class="delete-btn">x</button><button class="edit-btn">Edit</button>`;
+            console.log(newLi);
+
+            // adding li as last element of ul
+            fruits.appendChild(newLi);
+        })
+
+      // delete
       fruits.addEventListener('click',function(event){
+
+        console.log(event)
         if(event.target.classList.contains('delete-btn')){
             let fruitsToDelete=event.target.parentElement;
+            console.log(fruitsToDelete);
             fruits.removeChild(fruitsToDelete);
         }
     })
+      
     </script>
   </body>
 </html>
