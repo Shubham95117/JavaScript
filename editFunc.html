@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="margin: 0">
+    <form onsubmit="handleFormSubmit(event)" style="margin: 10px;">
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" /><br> <br>
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" style="margin-left: 25px;"/> <br> <br>
+      <label for="phone">Phone No</label>
+      <input type="tel" name="phone" id="phone" />
+      <button type="submit">Submit</button>
+    </form>
+    <ul id="listItem"></ul>
+    
+    <script>
+      function handleFormSubmit(event) {
+        event.preventDefault();
+        let username = event.target.username.value;
+        let email = event.target.email.value;
+        let phone = event.target.phone.value;
+
+        // obj
+        let obj = {
+          username,
+          email,
+          phone
+        };
+
+        // store in local storage
+        localStorage.setItem(obj.email, JSON.stringify(obj));
+
+        // function for display
+        displayList(obj);
+
+        // Clear input fields after submission
+        event.target.reset();
+      }
+
+      // function for display
+      function displayList(obj) {
+        let parentElement = document.querySelector('ul');
+        let childElement = document.createElement('li');
+        childElement.textContent = `${obj.username}-${obj.email}-${obj.phone} `;
+        
+        // Create delete button
+        const deleteBtn = document.createElement('input');
+        deleteBtn.type = 'button';
+        deleteBtn.value = 'Delete';
+        deleteBtn.onclick = () => {
+          localStorage.removeItem(obj.email);
+          parentElement.removeChild(childElement);
+        };
+
+        // Create edit button
+        const editBtn = document.createElement('input');
+        editBtn.type = 'button';
+        editBtn.value = 'Edit';
+        editBtn.onclick = () => {
+          // Remove from the screen and local storage
+          localStorage.removeItem(obj.email);
+          parentElement.removeChild(childElement);
+
+          // Populate input fields with existing values
+          document.getElementById('username').value = obj.username;
+          document.getElementById('email').value = obj.email;
+          document.getElementById('phone').value = obj.phone;
+        };
+
+        // Append buttons to child element
+        childElement.appendChild(deleteBtn);
+        childElement.appendChild(editBtn);
+
+        // Append child element to parent element
+        parentElement.appendChild(childElement);
+      }
+    </script>
+  </body>
+</html>

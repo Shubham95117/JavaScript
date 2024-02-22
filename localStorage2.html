@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="margin: 0">
+    <form onsubmit="handleFormSubmit(event)">
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" />
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" />
+      <label for="phone">Phone No</label>
+      <input type="tel" name="phone" id="phone" />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+  <script >
+   // Write your code below:
+
+   function handleFormSubmit(event) {
+        event.preventDefault();
+
+        // Get form values
+        // const username = document.getElementById('username').value;
+        // const email = document.getElementById('email').value;
+        // const phone = document.getElementById('phone').value;
+
+
+        // geting data from name element
+        let username = event.target.username.value;
+        let email = event.target.email.value;
+        let phone = event.target.phone.value;
+
+
+        // Create user object
+        const user = {
+          username: username,
+          email: email,
+          phone: phone
+        };
+
+        // Store user object in local storage
+        localStorage.setItem('User Details', JSON.stringify(user));
+
+        //print on console
+        console.log(JSON.parse(localStorage.getItem('User Details')));
+
+        // Optionally, you can clear the form fields after submission
+        document.getElementById('username').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+
+        alert('User details submitted and stored in local storage!');
+      }
+
+    
+
+  </script>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="margin: 0">
+    <form onsubmit="handleFormSubmit(event)" style="margin: 10px;">
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" /><br> <br>
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" style="margin-left: 25px;"/> <br> <br>
+      <label for="phone">Phone No</label>
+      <input type="tel" name="phone" id="phone" />
+      <button type="submit">Submit</button>
+    </form>
+    <ul id="listItem"></ul>
+  </body>
+  <script>
+    function handleFormSubmit(event){
+        event.preventDefault();
+        let username=event.target.username.value;
+        let email=event.target.email.value;
+        let phone=event.target.phone.value;
+
+        //obj
+        let obj={
+            username,
+            email,
+            phone
+        }
+
+        //store in local storage
+        localStorage.setItem(obj.email,JSON.stringify(obj));
+        //function for display
+        displayList(obj);
+    }
+
+    // function for display
+    function displayList(obj){
+        let parentElement=document.querySelector('ul');
+        let childElement=document.createElement('li');
+        childElement.textContent=`${obj.username}-${obj.email}-${obj.phone} `;
+        const deleBtn=document.createElement('input');
+        deleBtn.type='Button';
+        deleBtn.value='Delete';
+
+        deleBtn.onclick=()=>{
+            localStorage.removeItem(obj.email);
+            parentElement.removeChild(childElement);
+        }
+
+        childElement.appendChild(deleBtn);
+        parentElement.appendChild(childElement);   
+    }
+  </script>
+</html>
