@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="handleFormSubmit(event)" style="margin: 10px;">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" /><br> <br>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" style="margin-left: 25px;"/> <br> <br>
+        <label for="phone">Phone No</label>
+        <input type="tel" name="phone" id="phone" />
+        <button type="submit">Submit</button>
+      </form>
+      <ul id="listItem"></ul>
+</body>
+<script>
+    // onsubmit set to local storage and display as li in ul 
+    function handleFormSubmit(event){
+        //prevent to stop refresh
+        event.preventDefault();
+
+        // getting input values from name
+        let username = event.target.username.value;
+        let email = event.target.email.value;
+        let phone = event.target.phone.value;
+
+        // create obj to store
+        let user = {
+            username,
+            email,
+            phone
+        }
+
+        //add to localStorage
+        localStorage.setItem(user.email, JSON.stringify(user));
+
+        // calling display list function
+        displayList(user);
+    }
+
+    //display list function
+    function displayList(user){
+        // find parent element where to append
+        let parentEle = document.querySelector('ul');
+
+        // create new li 
+        let childElem = document.createElement('li');
+        childElem.textContent = `${user.email}-${user.username}-${user.phone}`;
+
+        // add delete button to li
+        let deleteBtn = document.createElement('button');
+        deleteBtn.value = 'Delete';
+        deleteBtn.textContent = 'Delete';
+
+        // adding onclick to delete list 
+        deleteBtn.onclick = () => {
+            localStorage.removeItem(user.email);
+            parentEle.removeChild(childElem);
+        }
+
+        // append delete button to li
+        childElem.appendChild(deleteBtn);
+
+        // Create edit button
+        const editBtn = document.createElement('button');
+        editBtn.textContent = 'Edit';
+        editBtn.onclick = () => {
+            // Remove from the screen and local storage
+            localStorage.removeItem(user.email);
+            parentEle.removeChild(childElem);
+
+            // Populate input fields with existing values
+            document.getElementById('username').value = user.username;
+            document.getElementById('email').value = user.email;
+            document.getElementById('phone').value = user.phone;
+
+            // Additional code to handle editing, e.g., show a save button
+            // or trigger another function to update the data in localStorage
+        };
+
+        // append edit button to li
+        childElem.appendChild(editBtn);
+
+        // append li to parent
+        parentEle.appendChild(childElem);
+    }
+</script>
+</html>
