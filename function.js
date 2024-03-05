@@ -108,10 +108,86 @@ Currying is a technique in functional programming where a function is transforme
 //  const functionWithValue=addConstantValue(15);
 //  console.log(functionWithValue(2)(5))
 
-//q1  >>> a
-function fun1(){
-    console.log('a')
-    return () => {
-    console.log('b')
-    }}
-    fun1()
+//q1  error
+// a()
+// b()
+// function a(){
+// console.log('inside a');
+// }
+// var b = function (){
+// console.log('inside b');
+// }
+
+//q2
+// Q.2 Difference between function expression and function statement?(More than one answer can be correct)
+// Function expression is alloted memory when execution context reaches the expression line. Before that it is undefined
+// Function statement is alloted memory in the very begining itself
+
+
+
+
+// q3  error
+// function a(){
+//     console.log('inside a');
+//     }
+//     var b = function abc(){
+//     console.log('inside b');
+//     }
+//     a()
+//     abc()
+
+
+//q4
+// Q.4 What are first class function?
+// Ability to pass function as arguments is called first class function
+// Functions which are not nested in other function are first class function
+// Ability to return function from inside a function
+
+//q5  // a is param and b is arg
+// function fun(a){
+//     console.log(a)
+//     }
+//     var b = 10;
+//     fun(b)
+
+//currying
+// Q5a)  >>a
+// function fun1(){
+// console.log('a')
+// return () => {
+// console.log('b')
+// }}
+// fun1()
+
+// Q5b) >>20
+// function fun1(){
+//     var a = 10
+//     return () => {
+//     a = 20;
+//     console.log(a)
+//     }}
+//     fun1()()
+    
+// Q5c) >>30
+// function fun1(a){
+// return () => {
+// a = a + 20;
+// console.log(a)
+// }}
+// fun1(10)(20)
+
+
+// Q5d)>>40
+// function fun1(a){
+// return (b) => {
+// a = a + b;
+// console.log(a)
+// }}
+// fun1(10)(30)
+// Q5e)>>error  // have to return fun2
+// function fun1(a){
+//     const fun2 = (b) => {
+//     a = a + b;
+//     console.log(a)
+//     }}
+//     fun1(10)(30)
