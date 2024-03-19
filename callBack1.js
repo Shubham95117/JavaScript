@@ -1,8 +1,20 @@
 //fun passes as an arg to other func
-function buyBike(callback) {
+
+
+
+//1
+// function buyBike() {
+//     setTimeout(() => {
+//         console.log("Bought Royal Enfield Himalayan");
+//         planTrip();
+//     }, 2000);
+// }
+
+//2
+function buyBike(x) {
     setTimeout(() => {
         console.log("Bought Royal Enfield Himalayan");
-        callback();
+        x();
     }, 2000);
 }
 
