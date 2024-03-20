@@ -34,5 +34,7 @@ function putTodo() {
 }
 
 function deleteTodo() {
-  // Write your code here
+  axios.delete('https://crudcrud.com/api/f2d045c66a7f45d3b5d8b72ed17a8ed0/todo/65f9187a1492af03e8f0eacf')
+  .then(res=>console.log(res))
+  .catch(err=>console.log(err))
 }
