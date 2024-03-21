@@ -107,7 +107,7 @@ window.addEventListener('DOMContentLoaded',function(){
   // Function to handle search
   function handleSearch(event) {
     const searchText = event.target.value.toLowerCase(); // Get the search text and convert to lowercase for case-insensitive search
-    const items = document.querySelectorAll('li'); // Get all the list items
+    const items = document.querySelectorAll('ul li'); // Get all the list items
     items.forEach(item => {
         const itemText = item.textContent.toLowerCase(); // Get the text content of each list item and convert to lowercase
         // Show or hide list items based on whether they match the search text
