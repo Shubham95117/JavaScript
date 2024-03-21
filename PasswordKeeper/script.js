@@ -14,7 +14,7 @@ function handleSubmit(event){
     console.log('password object ='+passwordDetails);
     
     // store in server
-    axios.post('https://crudcrud.com/api/dd6fc8d381cb457493f1e25e0286dde0/passwords',passwordDetails)
+    axios.post('https://crudcrud.com/api/a43e754c257247e58acd518b58727a34/passwords',passwordDetails)
     .then((res)=>{
         //passing to display function
         displayOnScreen(res.data);
@@ -25,6 +25,8 @@ function handleSubmit(event){
         console.log('post error'+err)
     })
 }
+
+
 
 // function for display on screen
 function displayOnScreen(passwordDetails) {
@@ -39,66 +41,59 @@ function displayOnScreen(passwordDetails) {
     let delBtn = document.createElement('button');
     delBtn.textContent = 'Delete';
 
-    // On click delete handler
-    function deleteUser(userId, userItem) {
-        axios.delete(`https://crudcrud.com/api/dd6fc8d381cb457493f1e25e0286dde0/passwords/${userId}`)
-        .then((result) => {
-            // Remove the user item from the screen
-            userItem.remove(); // Child to delete
-            console.log(result);
-        })
-        .catch((error) => console.error(error));
-    }
-
     // On click delete event listener
     delBtn.addEventListener("click", function (event) {
         const userId = passwordDetails._id;
         deleteUser(userId, childEle);
     });
 
+    // On click delete handler
+    function deleteUser(userId, userItem) {
+        axios.delete(`https://crudcrud.com/api/a43e754c257247e58acd518b58727a34/passwords/${userId}`)
+        .then((result) => {
+            // Remove the user item from the screen
+            userItem.remove(); // Child to delete
+            updateTotalPasswordsCount();//update count of passwords
+            console.log(result);
+        })
+        .catch((error) => console.error(error));
+    }
+
+    
     // Create edit button
     const editBtn = document.createElement("button");
-    editBtn.appendChild(document.createTextNode("Edit"));
-    // Edit button click handler
-    editBtn.addEventListener("click", function (event) {
-        // Here you can implement your logic to handle edit functionality
-        console.log("Edit button clicked for:", passwordDetails);
-    });
+    editBtn.textContent='Edit'
+  // Inside editBtn event listener
+  editBtn.addEventListener("click", function (event) {
+    deleteUser(passwordDetails._id,childEle)
+    editUser(passwordDetails);
+});
 
-    // Append buttons to the child element
-    childEle.appendChild(delBtn);
-    childEle.appendChild(editBtn);
+function editUser(passwordDetails) {
+    // Populate input fields with user details for editing
+    document.getElementById("title").value = passwordDetails.title;
+    document.getElementById("password").value = passwordDetails.password;
+}
 
-    // Append child to parent
+// Append delete and edit to child 
+childEle.appendChild(delBtn);
+childEle.appendChild(editBtn);
+// append child li to parent ul
     parentEle.appendChild(childEle);
 
-    function editUser(passwordDetails) {
-        // Populate input fields with user details for editing
-        document.getElementById("title").value = passwordDetails.title;
-        document.getElementById("password").value = passwordDetails.password;
-    }
-    
-    // Inside editBtn event listener
-    editBtn.addEventListener("click", function (event) {
-        deleteUser(passwordDetails._id,childEle)
-        editUser(passwordDetails);
-        // userList.removeChild(event.target.parentElement);
-    });
-
-
-
-
+    //update count function 
     updateTotalPasswordsCount();
 }
 
 function updateTotalPasswordsCount() {
     const totalPasswords = document.getElementById('totalPasswords');
-    const passwordItems = document.querySelectorAll('ul li');
+    //using queryselector all 
+    const passwordItems = document.querySelectorAll('li');
     totalPasswords.textContent = `Total Passwords: ${passwordItems.length}`;
 }
 // show data when dom loaded
 window.addEventListener('DOMContentLoaded',function(){
-    axios.get('https://crudcrud.com/api/dd6fc8d381cb457493f1e25e0286dde0/passwords')
+    axios.get('https://crudcrud.com/api/a43e754c257247e58acd518b58727a34/passwords')
     .then((response)=>{
         for(var i=0;i<response.data.length;i++){
             displayOnScreen(response.data[i]);
