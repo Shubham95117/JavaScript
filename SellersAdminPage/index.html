@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="handleSubmit(event)">
+        <label for="sellingPrice">Selling Price:</label>
+        <input type="text" name="sellingPrice" id="sellingPrice">
+        <label for="productName">Product Name:</label>
+        <input type="text" name="productName" id="productName">
+        <label for="category" >Choose a category:</label>
+        <select name="category" id="category" required>
+            <option value="electonics">Electonics</option>
+            <option value="food">Food Items</option>
+            <option value="skincare">Skin Care Items</option>
+        </select>
+        <button type="submit">Add Product</button>
+    </form>
+    <ul><h2>Products</h2>
+        <li style="list-style: none;" id="electonicsItem"><h3>Electronics Items</h3></li>
+        <li style="list-style: none;" id="foodItem"><h3>Food Items</h3></li>
+        <li style="list-style: none;" id="skincareItem"><h3>Skincare Items</h3></li>
+    </ul>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js"></script>
+<script src="/SellersAdminPage/script.js"></script>
+</html>
