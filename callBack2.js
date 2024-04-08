@@ -4,17 +4,18 @@ Create a function called "postLetter" which prints "Letter Posted" after 1 secon
 Make sure that "Letter Posted" is printed after "Wrote Letter" because obviously you will post letter only after you write it.
 */
 
-function writeLetter(){
-    setTimeout(()=>{
-        console.log('Wrote Letter');
-        postLetter()
-    },2000)
-}
 
-function postLetter(){
-    setTimeout(()=>{
-        console.log('Letter Posted')
-    },1000)
-}
-
-writeLetter(postLetter);
+    function writeLetter(postLetter){
+        setTimeout(()=>{
+          console.log('Wrote Letter');
+          postLetter();
+        },2000)
+      }
+      
+      function postLetter(){
+        setTimeout(()=>{
+          console.log('Letter Posted')
+        },1000)
+      }
+      
+      writeLetter(postLetter);

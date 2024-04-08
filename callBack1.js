@@ -1,28 +1,40 @@
-//fun passes as an arg to other func
+{
 
 
-
-//1
-// function buyBike() {
-//     setTimeout(() => {
-//         console.log("Bought Royal Enfield Himalayan");
-//         planTrip();
-//     }, 2000);
+///ex 1
+// function orderMeal(){
+//     console.log('ordered meal');
+//     setTimeout(function(){
+//         console.log('meal is ready');
+//         enjoyingMeal()
+//     },2000)
 // }
+//  function goToplayzone(){
+//     console.log('went to play zone')
+//  }
+//  function enjoyingMeal(){
+//     console.log('enjoying meal');
+//  }
+//  orderMeal();
+//  goToplayzone();
+ 
 
-//2
-function buyBike(x) {
-    setTimeout(() => {
-        console.log("Bought Royal Enfield Himalayan");
-        x();
-    }, 2000);
-}
+// q1 
+// Write your code here:
 
-function planTrip() {
-    setTimeout(() => {
-        console.log("Trip to Ladakh planned");
-    }, 1000);
-}
+function buyBike(callBack){
+    setTimeout(()=>{
+      console.log('Bought Royal Enfield Himalayan');
+      callBack();
+    },2000)
+  }
+  
+  function planTrip(){
+    setTimeout(()=>{
+      console.log('Trip to Ladakh planned')
+    },1000)
+  }
+  
+  buyBike(planTrip);
 
-// Use buyBike as a callback for planTrip
-buyBike(planTrip);
+  }
